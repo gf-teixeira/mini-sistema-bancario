@@ -9,6 +9,7 @@ public class Main {
         operador.banco = new Banco();
 
         Scanner scanner = new Scanner(System.in);
+
         int opcao=-1;
         while(opcao != 0){
 
@@ -23,20 +24,18 @@ public class Main {
             System.out.println("7 - Realizara Transferência");
             System.out.println("8 - Mostrar Valores");
             opcao = scanner.nextInt();
-            operador.scanner = scanner;
-
-            switch (opcao){
-                case 0:
-                    break;
-                case 1:
-                    operador.listaClientes();
-                    break;
-                case 2:
-                    operador.listaContas();
-                    break;
-                case 3:
-                    operador.saldoCliente();
-                    break;
+                switch (opcao) {
+                    case 0:
+                        break;
+                    case 1:
+                        operador.listaClientes();
+                        break;
+                    case 2:
+                        operador.listaContas();
+                        break;
+                    case 3:
+                        operador.saldoCliente();
+                        break;
                 case 4:
                     operador.saldoConta();
                     break;
@@ -52,9 +51,8 @@ public class Main {
                 case 8:
                     operador.mostraValores();
                     break;
+                }
             }
-
-        }
         scanner.close();
-    }
+        }
 }

@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class Operador {
 
     public static Banco banco;
-    public static Scanner scanner;
 
 
     public static void listaClientes(){
@@ -24,10 +23,12 @@ public class Operador {
     public static void saldoCliente(){
 
         Utils utils = new Utils();
+        Scanner scanner = new Scanner(System.in);
         try {
-
+            int cpf=0;
             System.out.println("Digite o cpf: ");
-            int cpf = scanner.nextInt();
+            cpf = scanner.nextInt();
+
            if (utils.clienteExiste(cpf, banco.clientes)) {
                 banco.saldoCliente(cpf);
             } else {
@@ -36,25 +37,29 @@ public class Operador {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
+
+
     }
 
-    public static void saldoConta(){
-        try{
+    public static void saldoConta() {
+        Scanner scanner = new Scanner(System.in);
+        try {
             System.out.println("Digite o numero: ");
             int num = scanner.nextInt();
             Utils utils = new Utils();
 
-            if(utils.contaExiste(num, banco.contas)){
+            if (utils.contaExiste(num, banco.contas)) {
                 banco.saldoConta(num);
-            }else{
+            } else {
                 throw new ContaNaoExiste(num);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-
     public static void extratoCliente(){
+
+        Scanner scanner = new Scanner(System.in);
         try{
 
             System.out.println("CPF: ");
@@ -72,6 +77,8 @@ public class Operador {
     }
 
     public static void extratoConta(){
+
+        Scanner scanner = new Scanner(System.in);
         try{
             System.out.println("Numero da Conta: ");
             int num = scanner.nextInt();
@@ -90,6 +97,7 @@ public class Operador {
     public static void realizaTransferencia(){
         Utils utils = new Utils();
 
+        Scanner scanner = new Scanner(System.in);
         try{
             int saldoAnterior = banco.getSaldo();
 
