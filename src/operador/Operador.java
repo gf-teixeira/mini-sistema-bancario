@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class Operador {
 
     public static Banco banco;
+    public static Scanner scanner;
 
 
     public static void listaClientes(){
@@ -23,7 +24,6 @@ public class Operador {
     public static void saldoCliente(){
 
         Utils utils = new Utils();
-        Scanner scanner = new Scanner(System.in);
         try {
             int cpf=0;
             System.out.println("Digite o cpf: ");
@@ -32,7 +32,7 @@ public class Operador {
            if (utils.clienteExiste(cpf, banco.clientes)) {
                 banco.saldoCliente(cpf);
             } else {
-                throw new ClienteNaoExiste(cpf);
+                throw new ClienteNaoExiste();
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -42,7 +42,6 @@ public class Operador {
     }
 
     public static void saldoConta() {
-        Scanner scanner = new Scanner(System.in);
         try {
             System.out.println("Digite o numero: ");
             int num = scanner.nextInt();
@@ -51,7 +50,7 @@ public class Operador {
             if (utils.contaExiste(num, banco.contas)) {
                 banco.saldoConta(num);
             } else {
-                throw new ContaNaoExiste(num);
+                throw new ContaNaoExiste();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -59,17 +58,14 @@ public class Operador {
     }
     public static void extratoCliente(){
 
-        Scanner scanner = new Scanner(System.in);
+        Utils utils = new Utils();
         try{
-
             System.out.println("CPF: ");
             int cpf = scanner.nextInt();
-            Utils utils = new Utils();
-
             if(utils.clienteExiste(cpf, banco.clientes)){
                 banco.extratoCliente(cpf);
             }else {
-                throw new ClienteNaoExiste(cpf);
+                throw new ClienteNaoExiste();
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -78,16 +74,14 @@ public class Operador {
 
     public static void extratoConta(){
 
-        Scanner scanner = new Scanner(System.in);
+        Utils utils = new Utils();
         try{
             System.out.println("Numero da Conta: ");
             int num = scanner.nextInt();
-            Utils utils = new Utils();
-
             if(utils.contaExiste(num, banco.contas)){
                 banco.extratoConta(num);
             }else {
-                throw new ContaNaoExiste(num);
+                throw new ContaNaoExiste();
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -96,8 +90,6 @@ public class Operador {
 
     public static void realizaTransferencia(){
         Utils utils = new Utils();
-
-        Scanner scanner = new Scanner(System.in);
         try{
             int saldoAnterior = banco.getSaldo();
 
@@ -108,7 +100,7 @@ public class Operador {
             final int numOrigem = scanner.nextInt();
 
             if(!utils.contaExiste(numOrigem, banco.contas)){
-                throw new ContaNaoExiste(numOrigem);
+                throw new ContaNaoExiste();
             }
             if(!(utils.verificaSaldo(numOrigem, valor, banco.contas))){
                 throw new SaldoInsuficiente();
@@ -118,7 +110,7 @@ public class Operador {
             final int numDestino = scanner.nextInt();
 
             if(!utils.contaExiste(numDestino, banco.contas)){
-                throw new ContaNaoExiste(numDestino);
+                throw new ContaNaoExiste();
             }
             banco.realizaTransferencia(valor, numOrigem, numDestino);
             int saldoPosterior = banco.getSaldo();

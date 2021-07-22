@@ -7,12 +7,10 @@ public class Main {
     public static void main(String[] args) {
         Operador operador = new Operador();
         operador.banco = new Banco();
-
-        Scanner scanner = new Scanner(System.in);
+        operador.scanner = new Scanner(System.in);
 
         int opcao=-1;
         while(opcao != 0){
-
             System.out.println("");
             System.out.println("0 - Encerrar");
             System.out.println("1 - Lista Clientes");
@@ -23,7 +21,8 @@ public class Main {
             System.out.println("6 - Extrato de Conta");
             System.out.println("7 - Realizara Transferência");
             System.out.println("8 - Mostrar Valores");
-            opcao = scanner.nextInt();
+            opcao = operador.scanner.nextInt();
+
                 switch (opcao) {
                     case 0:
                         break;
@@ -36,23 +35,24 @@ public class Main {
                     case 3:
                         operador.saldoCliente();
                         break;
-                case 4:
-                    operador.saldoConta();
-                    break;
-                case 5:
-                    operador.extratoCliente();
-                    break;
-                case 6:
-                    operador.extratoConta();
-                    break;
-                case 7:
-                    operador.realizaTransferencia();
-                    break;
-                case 8:
-                    operador.mostraValores();
-                    break;
+                    case 4:
+                        operador.saldoConta();
+                        break;
+                    case 5:
+                        operador.extratoCliente();
+                        break;
+                    case 6:
+                        operador.extratoConta();
+                        break;
+                    case 7:
+                        operador.realizaTransferencia();
+                        break;
+                    case 8:
+                        operador.mostraValores();
+                        break;
                 }
             }
-        scanner.close();
+
+        operador.scanner.close();
         }
 }
