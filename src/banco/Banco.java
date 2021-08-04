@@ -130,7 +130,7 @@ public class Banco {
            if(transferencia.getContaDestino().getNumero() == num){
                System.out.println("");
                System.out.println("Valor: + R$" + transferencia.getValor()/100);
-               System.out.println("Enviado por: " + transferencia.getContaDestino().getCliente().getNome());
+               System.out.println("Enviado por: " + transferencia.getContaOrigem().getCliente().getNome());
            }
         });
 
