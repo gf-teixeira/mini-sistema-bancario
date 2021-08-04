@@ -5,14 +5,24 @@ import conta.Conta;
 import transferencia.Transferencia;
 
 import java.util.ArrayList;
-
+/**Classe que representa objetos do tipo Banco
+* @author Gabriel Teixeira
+*/
 public class Banco {
+/**
+ * Atributo responsável por armazenar o saldo total do banco assim que o banco é criado.
+ */
     private int soma;
 
     public ArrayList<Cliente> clientes = new ArrayList<>();
     public ArrayList<Conta> contas = new ArrayList<>();
     public ArrayList<Transferencia> transferencias = new ArrayList<>();
 
+/**
+ * Construtor da Classe Banco.
+ * Insere dois clientes e três contas, adicionando-os nos devidos ArrayLists.
+ * Por fim, calcula o somatório dos saldos de todas as contas e armazena no atributo soma.
+ */
     public Banco(){
         Cliente cliente1 = new Cliente("Gabriel", 421);
         Cliente cliente2 = new Cliente("Adair", 321);
@@ -33,14 +43,18 @@ public class Banco {
         });
 
     }
-
+/**
+* Método responsável por listar todos os clientes do banco
+*/
     public void listaClientes(){
         clientes.forEach(cliente -> {
             System.out.println("CPF: " + cliente.getCpf());
             System.out.println("Nome: " + cliente.getNome());
         });
     }
-
+/**
+* Método responsável por listar todas as contas do banco
+*/
     public void listaContas(){
         contas.forEach(conta -> {
             System.out.println("Num: " + conta.getNumero());
@@ -48,7 +62,10 @@ public class Banco {
             System.out.println("Saldo: " + conta.getSaldo()/100);
         });
     }
-
+/**
+* Método responsável por consultar o saldo do cliente
+* @param cpf CPF do cliente
+*/
     public void saldoCliente(int cpf){
         int saldoCliente=0;
         for(Cliente cliente : clientes) {
@@ -63,7 +80,10 @@ public class Banco {
         System.out.println("CPF: " + cpf);
         System.out.println("Saldo: " + saldoCliente/100);
     }
-
+/**
+* Método responsável por consultar o saldo da conta
+* @param num Número da Conta
+*/
     public void saldoConta(int num) {
         int saldoConta = 0;
         for (Conta conta : contas) {
@@ -74,7 +94,11 @@ public class Banco {
         System.out.println("Num: " + num);
         System.out.println("Saldo: " + saldoConta/100);
     }
-
+/**
+* Método responsável por retornar o extrato do cliente. 
+* Confere todas as transferêncais em que o cliente possui participação.
+* @param cpf CPF do cliente
+*/
     public void extratoCliente(int cpf) {
         transferencias.forEach(transferencia -> {
             if(transferencia.getContaOrigem().getCliente().getCpf() == cpf){
@@ -91,6 +115,10 @@ public class Banco {
             }
         });
     }
+/**
+* Método responsável por retornar o extrato da conta
+* @param num Número da Conta
+*/
     public void extratoConta(int num){
         transferencias.forEach(transferencia -> {
            if(transferencia.getContaOrigem().getNumero() == num){
@@ -107,6 +135,12 @@ public class Banco {
         });
 
     }
+/**
+* Método responsável por realizar a transferência entre duas contas
+* @param valor Valor da transferência 
+* @param numContaOrigem Número da conta de origem
+* @param numContaDestino Número da conta de destino
+*/
     public void realizaTransferencia(int valor, int numContaOrigem, int numContaDestino){
 
         Conta contaOrigem = new Conta();
@@ -124,7 +158,9 @@ public class Banco {
         transferencias.add(transferencia);
         System.out.println("Transferência realizada com sucesso!");
     }
-
+/**
+* Método responsável por mostrar os saldos de todas as contas, juntamente com o saldo total.
+*/
     public void mostraValores(){
         int total = 0;
 
@@ -137,7 +173,10 @@ public class Banco {
         System.out.println("Total: R$" + total/100);
     }
 
-
+/**
+* Método responsável por retornar o saldo total de todas as contas
+* @return Saldo Total 
+*/
     public int getSaldo(){
         int saldo = 0;
         for(Conta conta : contas){
@@ -145,4 +184,47 @@ public class Banco {
         }
         return saldo;
     }
+    /**
+ * Método Auxiliar - responsável por verificar se o cliente existe
+ * @param cpf CPF do cliente
+ * @return True caso o cliente exista - False caso não.
+ */
+    public boolean clienteExiste(int cpf) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getCpf() == cpf) {
+                return true;
+            }
+        }
+        return false;
+    }
+/**
+ * Método Auxiliar - responsável por verificar se uma conta existe
+ * @param num Número da Conta
+ * @return True caso exista; False caso não
+ */
+    public boolean contaExiste(int num){
+        for(Conta conta : contas){
+            if(conta.getNumero() == num){
+                return true;
+            }
+        }
+        return false;
+    }
+/**
+ * Método Auxiliar - responsável por verificar se há saldo suficiente (compara com o valor requerido) na conta.
+ * @param num Número da Conta
+ * @return true caso houver saldo suficiente, false caso não houver.
+ */
+    public boolean verificaSaldo(int num, int valor){
+        for(Conta conta : contas){
+            if(conta.getNumero() == num){
+                if(conta.getSaldo() < valor){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
+
+

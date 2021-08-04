@@ -2,12 +2,23 @@ package transferencia;
 
 import conta.Conta;
 
+
+/**Classe que representa objetos do tipo Transferência
+* @author Gabriel Teixeira
+*/
 public class Transferencia {
 
     private int valor;
     private Conta contaOrigem;
     private Conta contaDestino;
-
+/**
+ * Construtor da Classe Transferência.
+ * Além de inicializar os atributos "valor", "contaOrigem" e "contaDestinO" do objeto transferência, o construtor muda o saldo das contas participantes, 
+ * utilizando do método setSaldo do objeto Conta.
+ * @param valor Valor da Transferência
+ * @param contaOrigem Objeto Conta da conta de Origem
+ * @param contaDestino Objeto Conta da conta de destino
+ */
     public Transferencia(int valor, Conta contaOrigem, Conta contaDestino){
         this.valor = valor;
         this.contaOrigem = contaOrigem;

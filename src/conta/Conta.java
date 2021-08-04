@@ -2,14 +2,25 @@ package conta;
 
 import cliente.Cliente;
 
+/**Classe que representa objetos do tipo Conta
+* @author Gabriel Teixeira
+*/
 public class Conta {
     private int numero;
     private int saldo;
     private Cliente cliente;
-
+/**
+ * Construtor Vazio da classe Conta
+ */
     public Conta(){
 
     }
+/**
+ * Construtor da Classe Conta
+ * Inicializa os atributos "numero" e "cliente"
+ * @param numero Número da Conta 
+ * @param cliente Objeto do tipo Cliente
+ */
     public Conta(int numero, Cliente cliente){
         this.numero = numero;
         this.cliente = cliente;
